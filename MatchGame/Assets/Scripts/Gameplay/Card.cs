@@ -1,18 +1,20 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using System.Buffers.Text;
 
 public class Card : MonoBehaviour
 {
-    public SpriteRenderer front;
-    public SpriteRenderer back;
+    [field: SerializeField] public SpriteRenderer front { get; private set; }
+    [SerializeField] SpriteRenderer back;
+    [SerializeField] SpriteRenderer baseSR;
 
-    public float flipDuration = 0.25f;
+    [SerializeField] float flipDuration = 0.25f;
 
-    public float punchAmount = 0.2f;
-    public float punchDuration = 0.2f;
-    public float flashDuration = 0.1f;
-    public float disappearDuration = 0.25f;
+    [SerializeField] float punchAmount = 0.2f;
+    [SerializeField] float punchDuration = 0.2f;
+    [SerializeField] float flashDuration = 0.1f;
+    [SerializeField] float disappearDuration = 0.25f;
 
     private bool isFront;
     private bool isAnimating;
@@ -28,9 +30,10 @@ public class Card : MonoBehaviour
         baseScale = transform.localScale;
     }
 
-    public void Setup(Sprite frontSprite)
+    public void Setup(Sprite frontSprite, Sprite baseSprite)
     {
         front.sprite = frontSprite;
+        baseSR.sprite = baseSprite;
         ShowBackInstant();
     }
 

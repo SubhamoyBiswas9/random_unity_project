@@ -88,11 +88,11 @@ public class GridSpawner : MonoBehaviour
                 go.transform.localPosition = pos;
                 go.transform.localScale = Vector3.one;
 
-                Card view = go.GetComponent<Card>();
-                CardController controller = new(selected[index], view);
+                Card card = go.GetComponent<Card>();
+                CardController controller = new(selected[index], card);
 
                 // --- Maintain aspect ratio via scaling ---
-                Sprite sprite = view.front.sprite;
+                Sprite sprite = card.front.sprite;
 
                 float spriteW = sprite.bounds.size.x;
                 float spriteH = sprite.bounds.size.y;

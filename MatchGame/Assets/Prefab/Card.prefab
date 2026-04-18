@@ -216,8 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73e4a8a2df001e4abf05ef2af3ff7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  front: {fileID: 8962569919772152885}
+  <front>k__BackingField: {fileID: 8962569919772152885}
   back: {fileID: 4985005543037566667}
+  baseSR: {fileID: 2810083955289603479}
   flipDuration: 0.1
   punchAmount: 0.2
   punchDuration: 0.2

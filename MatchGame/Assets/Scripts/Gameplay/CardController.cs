@@ -11,7 +11,7 @@ public class CardController
         Data = data;
         Card = card;
 
-        Card.Setup(data.frontSprite);
+        Card.Setup(data.frontSprite, data.baseSprite);
     }
 
     public void Flip(bool show)

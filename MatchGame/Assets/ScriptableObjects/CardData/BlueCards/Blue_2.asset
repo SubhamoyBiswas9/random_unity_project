@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7787f8bcdad2b844d9127efee4480859, type: 3}
-  m_Name: Red_3
+  m_Name: Blue_2
   m_EditorClassIdentifier: 
-  frontSprite: {fileID: 21300000, guid: b8b717cb57b5a7f42a3e47eba7bf5888, type: 3}
+  frontSprite: {fileID: 21300000, guid: 3009755f225ecb8479601301d54afcc9, type: 3}
+  baseSprite: {fileID: 21300000, guid: 1c2fda6eff76da94a993a4768a3ac950, type: 3}
