@@ -681,7 +681,7 @@ MonoBehaviour:
   cardPrefab: {fileID: 5329032326995045059, guid: d8d8898f0b4d80a40bd0ceb34fcf0cce,
     type: 3}
   parent: {fileID: 1837473067}
-  cam: {fileID: 330585545}
+  matchHandler: {fileID: 1583003045}
   cardPool:
   - {fileID: 11400000, guid: 031ecd01f9ff62a4c9fbd021cd1e2da4, type: 2}
   - {fileID: 11400000, guid: 9a37d0e6b2c530a4aa3016beb843adba, type: 2}

@@ -9,6 +9,13 @@ public class MatchHandler : MonoBehaviour
 
     private bool isProcessing;
 
+    private List<CardDataSO> cardPool;
+
+    public void Initialize(List<CardDataSO> pool)
+    {
+        cardPool = pool;
+    }
+
     public void RegisterCard(CardController cardController)
     {
         allCards.Add(cardController);
@@ -49,6 +56,8 @@ public class MatchHandler : MonoBehaviour
 
                 a.Card.PlayMatchAnimation();
                 b.Card.PlayMatchAnimation();
+
+                SaveProgress();
             }
             else
             {
@@ -58,5 +67,23 @@ public class MatchHandler : MonoBehaviour
         }
 
         isProcessing = false;
+    }
+
+    public void SaveProgress()
+    {
+        SaveData data = new SaveData();
+
+        data.cardIndices = new List<int>();
+        data.matched = new List<bool>();
+
+        foreach (var card in allCards)
+        {
+            int index = cardPool.IndexOf(card.Data);
+
+            data.cardIndices.Add(index);
+            data.matched.Add(card.IsMatched);
+        }
+
+        SaveSystem.Save(data);
     }
 }
