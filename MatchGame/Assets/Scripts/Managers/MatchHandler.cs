@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class MatchHandler : MonoBehaviour
 {
-    private Queue<CardController> flippedQueue = new();    
-    private List<CardController> allCards = new();
+    Queue<CardController> flippedQueue = new();    
+    List<CardController> allCards = new();
 
-    private bool isProcessing;
+    bool isProcessing;
 
-    private List<CardDataSO> cardPool;
+    List<CardDataSO> cardPool;
+
+    public System.Action<bool> OnPairEvaluated;
 
     public void Initialize(List<CardDataSO> pool)
     {
@@ -44,12 +46,14 @@ public class MatchHandler : MonoBehaviour
 
         while (flippedQueue.Count >= 2)
         {
-            CardController a = flippedQueue.Dequeue();
-            CardController b = flippedQueue.Dequeue();
+            var a = flippedQueue.Dequeue();
+            var b = flippedQueue.Dequeue();
 
             yield return new WaitForSeconds(0.4f);
 
-            if (a.Data == b.Data)
+            bool isMatch = (a.Data == b.Data);
+
+            if (isMatch)
             {
                 a.SetMatched();
                 b.SetMatched();
@@ -64,12 +68,14 @@ public class MatchHandler : MonoBehaviour
                 a.Flip(false);
                 b.Flip(false);
             }
+
+            OnPairEvaluated?.Invoke(isMatch);
         }
 
         isProcessing = false;
     }
 
-    public void SaveProgress()
+    void SaveProgress()
     {
         SaveData data = new SaveData();
 

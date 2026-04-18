@@ -3,27 +3,24 @@ using System.Collections.Generic;
 
 public class GridSpawner : MonoBehaviour
 {
-    [SerializeField] GridConfigSO config;
+    [field: SerializeField] public GridConfigSO config { get; private set; }
     [SerializeField] GameObject cardPrefab;
     [SerializeField] Transform parent;
 
-    [SerializeField] MatchHandler matchHandler;
+    [SerializeField] Camera mainCam;
 
-    Camera mainCam;
-
-    public List<CardDataSO> cardPool;
-
-    private void Start()
-    {
-        mainCam = Camera.main;
-
-        Spawn(matchHandler);
-        matchHandler.Initialize(cardPool);
-    }
+    [field: SerializeField] public List<CardDataSO> cardPool { get; private set; }
 
     public void Spawn(MatchHandler matchHandler)
     {
         int total = config.rows * config.cols;
+
+        if (total % 2 != 0)
+        {
+            Debug.LogError("Grid must have even number of cards for matching!");
+            return;
+
+        }
 
         SaveData save = SaveSystem.Load();
 
