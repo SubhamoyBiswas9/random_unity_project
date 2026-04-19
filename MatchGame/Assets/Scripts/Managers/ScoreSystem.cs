@@ -15,6 +15,9 @@ public class ScoreSystem : MonoBehaviour
     {
         this.matchHandler = matchHandler;
         matchHandler.OnPairEvaluated += OnPairEvaluated;
+
+        score = 0;
+        comboCount = 0;
     }
 
     void OnPairEvaluated(bool isMatch)
@@ -36,6 +39,11 @@ public class ScoreSystem : MonoBehaviour
         }
 
         OnScoreChanged?.Invoke(score, comboCount);
+    }
+
+    public void SetScore(int score)
+    {
+        this.score = score;
     }
 
     void OnDisable()

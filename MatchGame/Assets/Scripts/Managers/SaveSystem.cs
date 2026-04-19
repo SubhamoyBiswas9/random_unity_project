@@ -32,4 +32,8 @@ public class SaveData
 {
     public List<int> cardIndices;  // index in cardPool
     public List<bool> matched;
+
+    public int score;
+    public int matchedPairs;
+    public int moves;
 }

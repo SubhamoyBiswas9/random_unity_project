@@ -170,5 +170,10 @@ public class Card : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    
+    public void ShowFrontInstant()
+    {
+        isFront = true;
+        front.gameObject.SetActive(true);
+        back.gameObject.SetActive(false);
+    }
 }

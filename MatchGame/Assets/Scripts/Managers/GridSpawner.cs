@@ -11,8 +11,13 @@ public class GridSpawner : MonoBehaviour
 
     [field: SerializeField] public List<CardDataSO> cardPool { get; private set; }
 
-    public void Spawn(MatchHandler matchHandler)
+    public void Spawn(MatchHandler matchHandler, SaveData save)
     {
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         int total = config.rows * config.cols;
 
         if (total % 2 != 0)
@@ -21,8 +26,6 @@ public class GridSpawner : MonoBehaviour
             return;
 
         }
-
-        SaveData save = SaveSystem.Load();
 
         List<CardDataSO> selected = new();
 

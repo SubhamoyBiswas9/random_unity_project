@@ -5,7 +5,7 @@ using UnityEngine;
 public class MatchHandler : MonoBehaviour
 {
     Queue<CardController> flippedQueue = new();    
-    List<CardController> allCards = new();
+    public List<CardController> allCards { get; private set; } = new();
 
     bool isProcessing;
 
@@ -63,7 +63,7 @@ public class MatchHandler : MonoBehaviour
                 a.Card.PlayMatchAnimation();
                 b.Card.PlayMatchAnimation();
 
-                SaveProgress();
+                //SaveProgress();
 
                 AudioManager.Instance.PlayMatch();
             }
@@ -81,21 +81,21 @@ public class MatchHandler : MonoBehaviour
         isProcessing = false;
     }
 
-    void SaveProgress()
-    {
-        SaveData data = new SaveData();
+    //void SaveProgress()
+    //{
+    //    SaveData data = new SaveData();
 
-        data.cardIndices = new List<int>();
-        data.matched = new List<bool>();
+    //    data.cardIndices = new List<int>();
+    //    data.matched = new List<bool>();
 
-        foreach (var card in allCards)
-        {
-            int index = cardPool.IndexOf(card.Data);
+    //    foreach (var card in allCards)
+    //    {
+    //        int index = cardPool.IndexOf(card.Data);
 
-            data.cardIndices.Add(index);
-            data.matched.Add(card.IsMatched);
-        }
+    //        data.cardIndices.Add(index);
+    //        data.matched.Add(card.IsMatched);
+    //    }
 
-        SaveSystem.Save(data);
-    }
+    //    SaveSystem.Save(data);
+    //}
 }

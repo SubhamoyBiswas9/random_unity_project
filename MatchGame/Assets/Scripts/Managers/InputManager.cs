@@ -4,6 +4,8 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] LayerMask cardLayer;
 
+    bool canProcessInput;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -17,5 +19,10 @@ public class InputManager : MonoBehaviour
                 cardCollider.transform.GetComponent<Card>().OnTap();
             }
         }
+    }
+
+    public void SetInputEnabled(bool enabled)
+    {
+        canProcessInput = enabled;
     }
 }

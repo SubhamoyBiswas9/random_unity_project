@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplayScreen : MonoBehaviour
 {
@@ -13,11 +14,22 @@ public class GameplayScreen : MonoBehaviour
     [SerializeField] GameObject levelEndScreen;
     [SerializeField] TMP_Text levelEndText;
 
+    [SerializeField] Button replayButton;
+    [SerializeField] Button quitButton;
+
     ScoreSystem scoreSystem;
     LevelManager levelManager;
+    GameInitializer gameInitializer;
 
-    public void Init(ScoreSystem scoreSystem, LevelManager levelManager)
+    private void OnEnable()
     {
+        replayButton.onClick.AddListener(OnClickReplay);
+        quitButton.onClick.AddListener(()=> Application.Quit());
+    }
+
+    public void Init(GameInitializer gameInitializer, ScoreSystem scoreSystem, LevelManager levelManager)
+    {
+        this.gameInitializer = gameInitializer;
         this.scoreSystem = scoreSystem;
         this.levelManager = levelManager;
 
@@ -63,6 +75,13 @@ public class GameplayScreen : MonoBehaviour
         matchesText.text = $"Matches: {matched}/{total}";
     }
 
+    void OnClickReplay()
+    {
+        levelEndScreen.SetActive(false);
+        SaveSystem.Clear();
+        gameInitializer.StartGame();
+    }
+
     void OnDisable()
     {
         if (scoreSystem != null)
@@ -73,6 +92,8 @@ public class GameplayScreen : MonoBehaviour
             levelManager.OnMovesChanged -= UpdateMoves;
             levelManager.OnMatchProgressChanged -= UpdateMatches;
         }
-        
+
+        replayButton.onClick.RemoveListener(OnClickReplay);
+        quitButton.onClick.RemoveAllListeners();
     }
 }

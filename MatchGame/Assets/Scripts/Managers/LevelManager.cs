@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
 
     public event Action<bool> OnGameOver;
 
+    public bool gameFinished { get; private set; }
+
     public void Initialize(MatchHandler matchHandler, int totalCards)
     {
         this.matchHandler = matchHandler;
@@ -40,7 +42,7 @@ public class LevelManager : MonoBehaviour
 
             if (matchedPairs >= totalPairs)
             {
-                OnLevelComplete();
+                Invoke(nameof(OnLevelComplete), 1f);
                 return;
             }
         }
@@ -56,6 +58,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("LEVEL COMPLETE");
         AudioManager.Instance.PlayGameWin();
         OnGameOver?.Invoke(true);
+        gameFinished = true;
         SaveSystem.Clear();
     }
 
@@ -64,7 +67,18 @@ public class LevelManager : MonoBehaviour
         Debug.Log("LEVEL FAIL");
         AudioManager.Instance.PlayGameLose();
         OnGameOver?.Invoke(false);
+        gameFinished = true;
         SaveSystem.Clear();
+    }
+
+    public void SetMatchedPairs(int matchedPairs)
+    {
+        this.matchedPairs = matchedPairs;
+    }
+
+    public void SetMoves(int moves) 
+    {
+        this.moves = moves;
     }
 
     private void OnDisable()
