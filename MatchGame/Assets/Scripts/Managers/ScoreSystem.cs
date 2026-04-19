@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ScoreSystem : MonoBehaviour
 {
-    int score;
-    int comboCount = 0;
+    public int score { get; private set; }
+    public int comboCount { get; private set; } = 0;
 
     MatchHandler matchHandler;
+
+    public event System.Action<int,int> OnScoreChanged;
 
     public void Init(MatchHandler matchHandler)
     {
@@ -32,6 +34,8 @@ public class ScoreSystem : MonoBehaviour
         {
             comboCount = 0;
         }
+
+        OnScoreChanged?.Invoke(score, comboCount);
     }
 
     void OnDisable()

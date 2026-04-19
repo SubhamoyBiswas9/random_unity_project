@@ -1,14 +1,20 @@
 using UnityEngine;
+using System;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int maxMoves = 20;
+    [field: SerializeField] public int maxMoves { get; private set; } = 20;
 
-    int totalPairs;
-    int matchedPairs;
-    int moves;
+    public int totalPairs { get; private set; }
+    public int matchedPairs { get; private set; }
+    public int moves { get; private set; }
 
     MatchHandler matchHandler;
+
+    public event Action<int> OnMovesChanged;
+    public event Action<int, int> OnMatchProgressChanged;
+
+    public event Action<bool> OnGameOver;
 
     public void Initialize(MatchHandler matchHandler, int totalCards)
     {
@@ -25,9 +31,12 @@ public class LevelManager : MonoBehaviour
     {
         moves++;
 
+        OnMovesChanged?.Invoke(moves);
+
         if (isMatch)
         {
             matchedPairs++;
+            OnMatchProgressChanged?.Invoke(matchedPairs, totalPairs);
 
             if (matchedPairs >= totalPairs)
             {
@@ -46,6 +55,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("LEVEL COMPLETE");
         AudioManager.Instance.PlayGameWin();
+        OnGameOver?.Invoke(true);
         SaveSystem.Clear();
     }
 
@@ -53,6 +63,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("LEVEL FAIL");
         AudioManager.Instance.PlayGameLose();
+        OnGameOver?.Invoke(false);
         SaveSystem.Clear();
     }
 

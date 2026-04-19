@@ -6,6 +6,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] MatchHandler matchHandler;
     [SerializeField] LevelManager levelManager;
     [SerializeField] ScoreSystem scoreSystem;
+    [SerializeField] GameplayScreen gameplayScreen;
 
     void Start()
     {
@@ -17,5 +18,6 @@ public class GameInitializer : MonoBehaviour
         levelManager.Initialize(matchHandler, totalCards);
 
         scoreSystem.Init(matchHandler);
+        gameplayScreen.Init(scoreSystem, levelManager);
     }
 }

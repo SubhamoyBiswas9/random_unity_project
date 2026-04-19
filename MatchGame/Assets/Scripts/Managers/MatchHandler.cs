@@ -11,7 +11,7 @@ public class MatchHandler : MonoBehaviour
 
     List<CardDataSO> cardPool;
 
-    public System.Action<bool> OnPairEvaluated;
+    public event System.Action<bool> OnPairEvaluated;
 
     public void Initialize(List<CardDataSO> pool)
     {
