@@ -29,6 +29,7 @@ public class GameInitializer : MonoBehaviour
     {
         SaveData save = SaveSystem.Load();
 
+        matchHandler.ClearAllCards();
         gridSpawner.Spawn(matchHandler, save);
         matchHandler.Initialize(gridSpawner.cardPool);
 

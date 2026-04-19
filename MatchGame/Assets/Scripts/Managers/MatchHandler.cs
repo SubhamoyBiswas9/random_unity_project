@@ -81,21 +81,8 @@ public class MatchHandler : MonoBehaviour
         isProcessing = false;
     }
 
-    //void SaveProgress()
-    //{
-    //    SaveData data = new SaveData();
-
-    //    data.cardIndices = new List<int>();
-    //    data.matched = new List<bool>();
-
-    //    foreach (var card in allCards)
-    //    {
-    //        int index = cardPool.IndexOf(card.Data);
-
-    //        data.cardIndices.Add(index);
-    //        data.matched.Add(card.IsMatched);
-    //    }
-
-    //    SaveSystem.Save(data);
-    //}
+    public void ClearAllCards()
+    {
+        allCards.Clear();
+    }
 }

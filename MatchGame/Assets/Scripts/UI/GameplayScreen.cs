@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameplayScreen : MonoBehaviour
@@ -77,9 +78,9 @@ public class GameplayScreen : MonoBehaviour
 
     void OnClickReplay()
     {
-        levelEndScreen.SetActive(false);
         SaveSystem.Clear();
-        gameInitializer.StartGame();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void OnDisable()
