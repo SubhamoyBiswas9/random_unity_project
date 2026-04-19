@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 263f1b463962c5844b1978ae914b72e9, type: 3}
-  m_Name: New Grid Config SO
+  m_Name: GridConfig
   m_EditorClassIdentifier: 
-  rows: 5
-  cols: 2
+  rows: 4
+  cols: 4
   spacingX: 0.1
   spacingY: 0.1
   paddingX: 0.5

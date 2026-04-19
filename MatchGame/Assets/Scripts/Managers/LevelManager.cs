@@ -45,12 +45,15 @@ public class LevelManager : MonoBehaviour
     void OnLevelComplete()
     {
         Debug.Log("LEVEL COMPLETE");
+        AudioManager.Instance.PlayGameWin();
         SaveSystem.Clear();
     }
 
     void OnLevelFail()
     {
         Debug.Log("LEVEL FAIL");
+        AudioManager.Instance.PlayGameLose();
+        SaveSystem.Clear();
     }
 
     private void OnDisable()

@@ -32,6 +32,8 @@ public class MatchHandler : MonoBehaviour
 
         cardController.Flip(true);
 
+        AudioManager.Instance.PlayFlip();
+
         flippedQueue.Enqueue(cardController);
 
         if (!isProcessing)
@@ -62,11 +64,15 @@ public class MatchHandler : MonoBehaviour
                 b.Card.PlayMatchAnimation();
 
                 SaveProgress();
+
+                AudioManager.Instance.PlayMatch();
             }
             else
             {
                 a.Flip(false);
                 b.Flip(false);
+
+                AudioManager.Instance.PlayMismatch();
             }
 
             OnPairEvaluated?.Invoke(isMatch);
