@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
 {
-    [SerializeField] private GridSpawner gridSpawner;
-    [SerializeField] private MatchHandler matchHandler;
-    [SerializeField] private LevelManager levelManager;
+    [SerializeField] GridSpawner gridSpawner;
+    [SerializeField] MatchHandler matchHandler;
+    [SerializeField] LevelManager levelManager;
+    [SerializeField] ScoreSystem scoreSystem;
 
     void Start()
     {
@@ -14,5 +15,7 @@ public class GameInitializer : MonoBehaviour
         var gridConfig = gridSpawner.config;
         int totalCards = gridConfig.rows * gridConfig.cols;
         levelManager.Initialize(matchHandler, totalCards);
+
+        scoreSystem.Init(matchHandler);
     }
 }
